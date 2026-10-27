@@ -47,7 +47,7 @@ class TicketController
             ),
         ],
     )]
-    public function store(StoreTicketRequest $request): JsonRespotest_api_keynse
+    public function store(StoreTicketRequest $request): JsonResponse
     {
         $now = now()->format('Y-m-d H:i:s');
         $ticket = Ticket::create([
