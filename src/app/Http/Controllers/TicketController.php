@@ -182,6 +182,32 @@ class TicketController
             new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
         ],
 
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: 'version', type: 'integer', example: '3'),
+                    new OA\Property(property: 'status', type: 'string', enum: ['new', 'in_progress', 'done', 'closed'], example: 'done'),
+                    new OA\Property(
+                        property: 'comment',
+                        type: 'object',
+                        properties: [
+                            new OA\Property(
+                                property: 'author',
+                                type: 'string',
+                                example: 'Support'
+                            ),
+                            new OA\Property(
+                                property: 'message',
+                                type: 'string',
+                                example: 'Починили, проверьте'
+                            ),
+                        ]
+                    ),
+                ],
+            ),
+        ),
+
         responses: [
             new OA\Response(response: 200, description: 'Комментарий добавлен'),
             new OA\Response(response: 409, description: 'Конфликт версий')
